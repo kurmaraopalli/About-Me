@@ -20,6 +20,18 @@
                 <li><a href="#education">Education & Certs</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="header-controls">
+                <div class="role-switcher" id="role-switcher">
+                    <button class="role-btn active" data-role="all">All</button>
+                    <button class="role-btn" data-role="manager">Manager</button>
+                    <button class="role-btn" data-role="architect">Architect</button>
+                    <button class="role-btn" data-role="developer">Developer</button>
+                </div>
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <!-- Sun icon shown by default, Moon icon added via JS if needed -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sun-icon"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+            </div>
             <a href="#contact" class="nav-cta">Let's Connect</a>
             <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
@@ -42,15 +54,15 @@
                     </a>
                 </div>
                 <div class="hero-stats">
-                    <div class="stat-item">
+                    <div class="stat-item role-highlight" data-role="manager architect developer">
                         <h4>18<span>+</span></h4>
                         <p>Years Experience</p>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item role-highlight" data-role="architect developer">
                         <h4>10<span>+</span></h4>
                         <p>Enterprise Apps</p>
                     </div>
-                    <div class="stat-item">
+                    <div class="stat-item role-highlight" data-role="manager architect">
                         <h4>5<span>+</span></h4>
                         <p>Certifications</p>
                     </div>
@@ -73,8 +85,8 @@
             <div class="about-content reveal" style="transition-delay: 0.2s;">
                 <span class="section-tag">About Me</span>
                 <h2 class="section-title" style="margin-bottom: 2rem; text-align: left;">Bridging Complex Tech with Strategic Leadership</h2>
-                <p>Throughout my 18+ year career, I have driven the software development lifecycle from initial design to production deployments for large-scale e-commerce and banking portals. I specialize in designing microservices architectures, managing database designs, and architecting cloud-native solutions.</p>
-                <p>Currently serving as a Manager at Ernst & Young, I lead engineering teams, manage client relationships, and run scrum processes. I am deeply passionate about GenAI integration, RAG pipelines, and vector databases, helping companies leverage modern AI technologies for business automation.</p>
+                <p class="role-highlight" data-role="architect developer">Throughout my 18+ year career, I have driven the software development lifecycle from initial design to production deployments for large-scale e-commerce and banking portals. I specialize in designing microservices architectures, managing database designs, and architecting cloud-native solutions.</p>
+                <p class="role-highlight" data-role="manager">Currently serving as a Manager at Ernst & Young, I lead engineering teams, manage client relationships, and run scrum processes. I am deeply passionate about GenAI integration, RAG pipelines, and vector databases, helping companies leverage modern AI technologies for business automation.</p>
                 <div style="margin-top: 1.5rem; margin-bottom: 2rem;">
                     <h4 style="color: var(--text-primary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.75rem;">Languages</h4>
                     <div class="timeline-tags">
@@ -94,28 +106,28 @@
                 <h2 class="section-title">Core Areas of Expertise</h2>
             </div>
             <div class="expertise-grid">
-                <div class="expertise-card reveal">
+                <div class="expertise-card reveal role-highlight" data-role="architect">
                     <div class="expertise-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
                     </div>
                     <h3>Enterprise Architecture</h3>
                     <p>Designing high-performance microservices, REST APIs, and distributed message queues using .NET Core, Kafka, RabbitMQ, and NServiceBus.</p>
                 </div>
-                <div class="expertise-card reveal" style="transition-delay: 0.1s;">
+                <div class="expertise-card reveal role-highlight" style="transition-delay: 0.1s;" data-role="architect developer">
                     <div class="expertise-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
                     </div>
                     <h3>Cloud & DevOps</h3>
                     <p>Architecting cloud-native applications on MS Azure and AWS. Proficient in Docker, PCF, and automated CI/CD deployment workflows.</p>
                 </div>
-                <div class="expertise-card reveal" style="transition-delay: 0.2s;">
+                <div class="expertise-card reveal role-highlight" style="transition-delay: 0.2s;" data-role="architect developer manager">
                     <div class="expertise-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                     </div>
                     <h3>AI & Generative AI</h3>
                     <p>Implementing RAG systems, LangChain pipelines, prompt engineering, vector database integrations, and customized LLM application automation.</p>
                 </div>
-                <div class="expertise-card reveal" style="transition-delay: 0.3s;">
+                <div class="expertise-card reveal role-highlight" style="transition-delay: 0.3s;" data-role="manager">
                     <div class="expertise-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
@@ -135,7 +147,7 @@
             </div>
             
             <div class="timeline">
-                <div class="timeline-item reveal">
+                <div class="timeline-item reveal role-highlight" data-role="manager architect">
                     <div class="timeline-dot"></div>
                     <div class="timeline-header">
                         <h3>Ernst & Young LLP<span>Manager</span></h3>
@@ -143,11 +155,11 @@
                     </div>
                     <p class="timeline-desc">Leading distributed microservices projects for premium clients like Dell (Dell Sales Application & DCQO E-Commerce platform). Coordinating deployments, writing Moq tests, and managing a team of 7-9 engineers as Scrum Master.</p>
                     <div class="timeline-tags">
-                        <span>.NET Core</span><span>Microservices</span><span>MongoDB</span><span>Angular</span><span>Kafka</span><span>Azure</span><span>RabbitMQ</span>
+                        <span class="role-highlight" data-role="architect developer">.NET Core</span><span class="role-highlight" data-role="architect">Microservices</span><span class="role-highlight" data-role="architect developer">MongoDB</span><span class="role-highlight" data-role="developer">Angular</span><span class="role-highlight" data-role="architect">Kafka</span><span class="role-highlight" data-role="architect">Azure</span><span class="role-highlight" data-role="architect">RabbitMQ</span>
                     </div>
                 </div>
 
-                <div class="timeline-item reveal">
+                <div class="timeline-item reveal role-highlight" data-role="architect developer">
                     <div class="timeline-dot"></div>
                     <div class="timeline-header">
                         <h3>Synechron Technologies<span>Tech Lead</span></h3>
@@ -155,11 +167,11 @@
                     </div>
                     <p class="timeline-desc">Architected and migrated the Global Market Portal system for Jefferies Investment Banking LLC into Azure. Managed developer sprints and created automated analytics dashboard reports.</p>
                     <div class="timeline-tags">
-                        <span>ASP.NET MVC</span><span>WCF</span><span>Web API</span><span>SQL Server</span><span>Hadoop</span><span>Azure Migration</span><span>React</span>
+                        <span class="role-highlight" data-role="developer">ASP.NET MVC</span><span class="role-highlight" data-role="architect">WCF</span><span class="role-highlight" data-role="architect developer">Web API</span><span class="role-highlight" data-role="architect developer">SQL Server</span><span class="role-highlight" data-role="architect">Hadoop</span><span class="role-highlight" data-role="architect">Azure Migration</span><span class="role-highlight" data-role="developer">React</span>
                     </div>
                 </div>
 
-                <div class="timeline-item reveal">
+                <div class="timeline-item reveal role-highlight" data-role="developer">
                     <div class="timeline-dot"></div>
                     <div class="timeline-header">
                         <h3>ASAP Info Systems<span>Senior Software Engineer</span></h3>
@@ -167,11 +179,11 @@
                     </div>
                     <p class="timeline-desc">Designed and deployed App-V Client deployment tools for Microsoft India Pvt. Ltd. built on WinForms UI and PowerShell scripts.</p>
                     <div class="timeline-tags">
-                        <span>C#</span><span>WinForms</span><span>PowerShell Cmdlets</span><span>App-V 5.1</span><span>Azure</span>
+                        <span class="role-highlight" data-role="developer">C#</span><span class="role-highlight" data-role="developer">WinForms</span><span class="role-highlight" data-role="developer">PowerShell Cmdlets</span><span class="role-highlight" data-role="developer">App-V 5.1</span><span class="role-highlight" data-role="architect">Azure</span>
                     </div>
                 </div>
 
-                <div class="timeline-item reveal">
+                <div class="timeline-item reveal role-highlight" data-role="developer">
                     <div class="timeline-dot"></div>
                     <div class="timeline-header">
                         <h3>Prime Access Technologies<span>Senior Software Engineer</span></h3>
@@ -179,11 +191,11 @@
                     </div>
                     <p class="timeline-desc">Developed and maintained scheduling portals integrating XML parsing templates and custom report generation for Morgan Stanley.</p>
                     <div class="timeline-tags">
-                        <span>C#</span><span>ASP.NET MVC</span><span>SQL Server</span><span>AngularJS</span><span>VBA</span>
+                        <span class="role-highlight" data-role="developer">C#</span><span class="role-highlight" data-role="developer">ASP.NET MVC</span><span class="role-highlight" data-role="architect developer">SQL Server</span><span class="role-highlight" data-role="developer">AngularJS</span><span class="role-highlight" data-role="developer">VBA</span>
                     </div>
                 </div>
 
-                <div class="timeline-item reveal">
+                <div class="timeline-item reveal role-highlight" data-role="developer architect">
                     <div class="timeline-dot"></div>
                     <div class="timeline-header">
                         <h3>Bank of America Continuum<span>Senior Software Engineer</span></h3>
@@ -191,7 +203,7 @@
                     </div>
                     <p class="timeline-desc">Developed the Title Workflow Application (TWA) for home loans, managing visual workflows, data scrapers, and analytics reports.</p>
                     <div class="timeline-tags">
-                        <span>C#</span><span>WCF Services</span><span>SQL Server</span><span>jQuery</span><span>Excel VBA</span><span>OCR</span><span>AS400</span>
+                        <span class="role-highlight" data-role="developer">C#</span><span class="role-highlight" data-role="architect">WCF Services</span><span class="role-highlight" data-role="architect developer">SQL Server</span><span class="role-highlight" data-role="developer">jQuery</span><span class="role-highlight" data-role="developer">Excel VBA</span><span class="role-highlight" data-role="developer">OCR</span><span class="role-highlight" data-role="developer">AS400</span>
                     </div>
                 </div>
             </div>
@@ -340,6 +352,27 @@
             <div class="footer-copyright">&copy; 2026 Kurma Rao Palli. All rights reserved.</div>
         </div>
     </footer>
+
+    <!-- --- Opportunities Ticker Widget --- -->
+    <div class="opportunities-ticker collapsed" id="opportunities-ticker">
+        <button class="ticker-toggle-btn" id="ticker-toggle" aria-label="Toggle Jobs Panel">
+            <!-- Briefcase Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="briefcase-icon"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+        </button>
+        <div class="ticker-content">
+            <div class="ticker-header">
+                <h4>Live Opportunities</h4>
+                <button class="ticker-toggle-btn" id="ticker-close" aria-label="Minimize">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></svg>
+                </button>
+            </div>
+            <div class="ticker-scroll-container">
+                <ul class="ticker-list" id="ticker-list">
+                    <!-- Dynamic jobs will be loaded here -->
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <script src="index.js"></script>
 </body>

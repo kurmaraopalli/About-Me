@@ -21,6 +21,24 @@
     
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --glass-blur: blur(16px);
+    --bg-header: rgba(11, 11, 12, 0.75);
+}
+
+body.light-mode {
+    --bg-primary: #F4F4F5;
+    --bg-secondary: #E4E4E7;
+    --bg-card: rgba(255, 255, 255, 0.7);
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(16, 185, 129, 0.6);
+    
+    --text-primary: #09090B;
+    --text-secondary: #3F3F46;
+    --text-muted: #71717A;
+    
+    --accent: #059669;
+    --accent-hover: #047857;
+    --accent-glow: rgba(5, 150, 105, 0.15);
+    --bg-header: rgba(244, 244, 245, 0.75);
 }
 
 /* --- Base Resets --- */
@@ -96,7 +114,7 @@ header {
 }
 
 header.scrolled {
-    background-color: rgba(11, 11, 12, 0.75);
+    background-color: var(--bg-header);
     backdrop-filter: var(--glass-blur);
     border-bottom: 1px solid var(--border-color);
 }
@@ -923,3 +941,275 @@ footer {
         display: none;
     }
 }
+
+/* --- Light Mode Grid Override --- */
+body.light-mode::before {
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(5, 150, 105, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(5, 150, 105, 0.03) 0%, transparent 45%),
+        linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+}
+
+/* --- Theme & Role Controls --- */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+}
+
+.theme-toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.role-switcher {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 9999px;
+    padding: 2px;
+}
+
+body.light-mode .role-switcher {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.role-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.role-btn.active {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 4px 10px var(--accent-glow);
+}
+
+/* --- Role Mode Focus System --- */
+.role-highlight {
+    transition: var(--transition-smooth);
+}
+
+/* Fading unselected elements */
+body.role-mode-active .role-highlight {
+    opacity: 0.35;
+    filter: grayscale(80%);
+}
+
+/* Re-emphasizing active role elements */
+body.role-manager .role-highlight[data-role*="manager"],
+body.role-architect .role-highlight[data-role*="architect"],
+body.role-developer .role-highlight[data-role*="developer"] {
+    opacity: 1;
+    filter: none;
+    border-color: var(--accent);
+    box-shadow: 0 8px 30px var(--accent-glow);
+    transform: translateY(-2px);
+}
+
+/* Timeline specific re-emphasis behavior */
+body.role-manager .timeline-item.role-highlight[data-role*="manager"],
+body.role-architect .timeline-item.role-highlight[data-role*="architect"],
+body.role-developer .timeline-item.role-highlight[data-role*="developer"] {
+    transform: none; /* Keep original structure for timeline item position */
+    box-shadow: none;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.5rem;
+}
+
+body.role-manager .timeline-item.role-highlight[data-role*="manager"] .timeline-dot,
+body.role-architect .timeline-item.role-highlight[data-role*="architect"] .timeline-dot,
+body.role-developer .timeline-item.role-highlight[data-role*="developer"] .timeline-dot {
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* --- Opportunities Ticker Widget --- */
+.opportunities-ticker {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    width: 320px;
+    background-color: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    z-index: 99;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+
+body.light-mode .opportunities-ticker {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.opportunities-ticker.collapsed {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    bottom: 24px;
+    left: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.opportunities-ticker.collapsed .ticker-content {
+    display: none;
+}
+
+.opportunities-ticker.collapsed .ticker-toggle-btn {
+    position: static;
+    color: var(--bg-primary);
+}
+
+.opportunities-ticker.collapsed:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.ticker-content {
+    padding: 1.25rem;
+}
+
+.ticker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ticker-header h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin: 0;
+}
+
+.ticker-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.ticker-toggle-btn:hover {
+    color: var(--accent);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .ticker-toggle-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.ticker-scroll-container {
+    height: 140px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-list {
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.ticker-item {
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.ticker-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.ticker-job-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.ticker-job-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticker-job-link {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.ticker-job-link:hover {
+    text-decoration: underline;
+}
+
+/* Hide header controls in mobile layout for clean spacing */
+@media (max-width: 768px) {
+    .header-controls {
+        gap: 0.75rem;
+    }
+    .role-switcher {
+        display: none; /* Hide roles toggle on small screens to prevent overlap */
+    }
+    .opportunities-ticker {
+        bottom: 16px;
+        left: 16px;
+        width: calc(100% - 32px);
+    }
+    .opportunities-ticker.collapsed {
+        width: 48px;
+        height: 48px;
+        left: 16px;
+        bottom: 16px;
+    }
+}
+
