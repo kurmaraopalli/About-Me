@@ -950,7 +950,6 @@ body.light-mode::before {
         linear-gradient(rgba(0, 0, 0, 0.015) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
 }
-
 /* --- Theme & Role Controls --- */
 .header-controls {
     display: flex;
@@ -976,6 +975,40 @@ body.light-mode::before {
     border-color: var(--accent);
     color: var(--accent);
     box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Sub-Header switcher bar styling */
+.sub-header-switcher {
+    width: 100%;
+    background-color: var(--bg-header);
+    backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.6rem 0;
+    position: sticky;
+    top: 4.5rem; /* sits right below main navigation (4.5rem) */
+    z-index: 90;
+    transition: var(--transition-smooth);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .sub-header-switcher {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.role-switcher-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.switcher-label {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
 }
 
 .role-switcher {
@@ -1197,8 +1230,20 @@ body.light-mode .ticker-toggle-btn:hover {
     .header-controls {
         gap: 0.75rem;
     }
-    .role-switcher {
-        display: none; /* Hide roles toggle on small screens to prevent overlap */
+    .sub-header-switcher {
+        top: 4.5rem;
+        padding: 0.5rem 0;
+    }
+    .switcher-label {
+        display: none; /* Hide label on mobile to save space */
+    }
+    .role-switcher-container {
+        gap: 0;
+        justify-content: center;
+    }
+    .role-btn {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
     }
     .opportunities-ticker {
         bottom: 16px;
