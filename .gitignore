@@ -1,0 +1,22 @@
+# Extracted docx temp folders (not needed in production)
+docx_extracted/
+docx_extracted_2/
+
+# Duplicate archive of resume docx
+Kurma Rao Palli_New_bulletPoints.zip
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo

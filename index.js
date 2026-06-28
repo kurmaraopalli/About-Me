@@ -184,6 +184,24 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: "Backend Engineering Lead", company: "Tech Mahindra", location: "Visakhapatnam (Vizag)", url: "https://www.linkedin.com/jobs" }
     ];
 
+    // HTML sanitizer to prevent XSS from untrusted JSON data
+    const escapeHTML = (str) => {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    };
+
+    // Validate URL to prevent javascript: protocol injection
+    const sanitizeURL = (url) => {
+        try {
+            const parsed = new URL(url);
+            if (parsed.protocol === 'http:' || parsed.protocol === 'https:') {
+                return parsed.href;
+            }
+        } catch (e) { /* invalid URL */ }
+        return 'https://www.linkedin.com/jobs';
+    };
+
     // Populate ticker with list items
     const renderJobs = (jobs) => {
         if (!tickerList) return;
@@ -192,10 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.className = 'ticker-item';
             li.innerHTML = `
-                <span class="ticker-job-title">${job.title}</span>
+                <span class="ticker-job-title">${escapeHTML(job.title || '')}</span>
                 <div class="ticker-job-meta">
-                    <span>${job.company} • ${job.location}</span>
-                    <a href="${job.url}" target="_blank" class="ticker-job-link">Apply</a>
+                    <span>${escapeHTML(job.company || '')} • ${escapeHTML(job.location || '')}</span>
+                    <a href="${sanitizeURL(job.url || '')}" target="_blank" rel="noopener noreferrer" class="ticker-job-link">Apply</a>
                 </div>
             `;
             tickerList.appendChild(li);
