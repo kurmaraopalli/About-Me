@@ -2,61 +2,79 @@
   {
     "title": "Lead .NET Technical Architect",
     "company": "Mercedes-Benz R&D",
-    "location": "Bangalore (Hybrid)",
+    "location": "Bengaluru (Hybrid)",
     "url": "https://www.linkedin.com/jobs"
   },
   {
     "title": "Engineering Manager (.NET & Azure)",
     "company": "Optum",
-    "location": "Bangalore (Hybrid)",
+    "location": "Bengaluru (Hybrid)",
     "url": "https://www.linkedin.com/jobs"
   },
   {
     "title": "Technical Architect - Microservices",
     "company": "Bosch Group",
-    "location": "Bangalore",
+    "location": "Bengaluru",
     "url": "https://www.linkedin.com/jobs"
   },
   {
-    "title": "Software Engineering Manager (.NET)",
+    "title": "Solutions Architect (.NET & Azure)",
+    "company": "Persistent Systems",
+    "location": "Pune",
+    "url": "https://www.linkedin.com/jobs"
+  },
+  {
+    "title": "Engineering Manager (.NET & Cloud)",
     "company": "Infosys",
-    "location": "Bangalore",
+    "location": "Pune (Hybrid)",
     "url": "https://www.linkedin.com/jobs"
   },
   {
-    "title": "Backend Development Manager",
+    "title": "Senior .NET Architect",
+    "company": "Capgemini",
+    "location": "Pune",
+    "url": "https://www.linkedin.com/jobs"
+  },
+  {
+    "title": "Principal .NET Architect",
     "company": "EY India",
-    "location": "Bangalore",
-    "url": "https://www.linkedin.com/jobs"
-  },
-  {
-    "title": "Lead Software Engineer / Architect",
-    "company": "Siemens",
-    "location": "Bangalore (Hybrid)",
-    "url": "https://www.linkedin.com/jobs"
-  },
-  {
-    "title": "Technical Delivery Manager (.NET)",
-    "company": "EPAM Systems",
-    "location": "Bangalore",
-    "url": "https://www.linkedin.com/jobs"
-  },
-  {
-    "title": "Software Architect - .NET & Cloud",
-    "company": "Wipro",
-    "location": "Bangalore (Hybrid)",
+    "location": "Hyderabad",
     "url": "https://www.linkedin.com/jobs"
   },
   {
     "title": "Engineering Manager - Backend",
     "company": "LeadSquared",
-    "location": "Bangalore (Hybrid)",
+    "location": "Hyderabad (Hybrid)",
     "url": "https://www.linkedin.com/jobs"
   },
   {
-    "title": "Principal Architect (.NET & AWS)",
+    "title": "Solution Architect (.NET)",
     "company": "NTT DATA",
-    "location": "Bangalore",
+    "location": "Hyderabad",
+    "url": "https://www.linkedin.com/jobs"
+  },
+  {
+    "title": "Technical Delivery Manager (.NET)",
+    "company": "Ericsson",
+    "location": "Gurugram (Hybrid)",
+    "url": "https://www.linkedin.com/jobs"
+  },
+  {
+    "title": "Senior Architect (.NET & Azure)",
+    "company": "HCLTech",
+    "location": "Noida",
+    "url": "https://www.linkedin.com/jobs"
+  },
+  {
+    "title": "Technical Lead (.NET Architect)",
+    "company": "Randstad India",
+    "location": "Visakhapatnam (Vizag)",
+    "url": "https://www.linkedin.com/jobs"
+  },
+  {
+    "title": "Backend Engineering Lead",
+    "company": "Tech Mahindra",
+    "location": "Visakhapatnam (Vizag)",
     "url": "https://www.linkedin.com/jobs"
   }
 ]

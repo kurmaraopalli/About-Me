@@ -1,0 +1,38 @@
+name: Daily Opportunities Update
+
+on:
+  schedule:
+    # Runs at 00:00 UTC (5:30 AM IST) every day
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from the GitHub Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-jobs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Run update script
+      run: python update_opportunities.py
+
+    - name: Commit and push updates
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add opportunities.json
+        if git diff --cached --quiet; then
+          echo "No changes detected in opportunities.json"
+        else
+          git commit -m "chore: auto-update opportunities list [skip ci]"
+          git push
+        fi

@@ -169,13 +169,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fallback jobs list
     const fallbackJobs = [
-        { title: "Lead .NET Technical Architect", company: "Mercedes-Benz R&D", location: "Bangalore (Hybrid)", url: "https://www.linkedin.com/jobs" },
-        { title: "Engineering Manager (.NET & Azure)", company: "Optum", location: "Bangalore (Hybrid)", url: "https://www.linkedin.com/jobs" },
-        { title: "Technical Architect - Microservices", company: "Bosch Group", location: "Bangalore", url: "https://www.linkedin.com/jobs" },
-        { title: "Software Engineering Manager (.NET)", company: "Infosys", location: "Bangalore", url: "https://www.linkedin.com/jobs" },
-        { title: "Backend Development Manager", company: "EY India", location: "Bangalore", url: "https://www.linkedin.com/jobs" },
-        { title: "Lead Software Engineer / Architect", company: "Siemens", location: "Bangalore (Hybrid)", url: "https://www.linkedin.com/jobs" },
-        { title: "Technical Delivery Manager (.NET)", company: "EPAM Systems", location: "Bangalore", url: "https://www.linkedin.com/jobs" }
+        { title: "Lead .NET Technical Architect", company: "Mercedes-Benz R&D", location: "Bengaluru (Hybrid)", url: "https://www.linkedin.com/jobs" },
+        { title: "Engineering Manager (.NET & Azure)", company: "Optum", location: "Bengaluru (Hybrid)", url: "https://www.linkedin.com/jobs" },
+        { title: "Technical Architect - Microservices", company: "Bosch Group", location: "Bengaluru", url: "https://www.linkedin.com/jobs" },
+        { title: "Solutions Architect (.NET & Azure)", company: "Persistent Systems", location: "Pune", url: "https://www.linkedin.com/jobs" },
+        { title: "Engineering Manager (.NET & Cloud)", company: "Infosys", location: "Pune (Hybrid)", url: "https://www.linkedin.com/jobs" },
+        { title: "Senior .NET Architect", company: "Capgemini", location: "Pune", url: "https://www.linkedin.com/jobs" },
+        { title: "Principal .NET Architect", company: "EY India", location: "Hyderabad", url: "https://www.linkedin.com/jobs" },
+        { title: "Engineering Manager - Backend", company: "LeadSquared", location: "Hyderabad (Hybrid)", url: "https://www.linkedin.com/jobs" },
+        { title: "Solution Architect (.NET)", company: "NTT DATA", location: "Hyderabad", url: "https://www.linkedin.com/jobs" },
+        { title: "Technical Delivery Manager (.NET)", company: "Ericsson", location: "Gurugram (Hybrid)", url: "https://www.linkedin.com/jobs" },
+        { title: "Senior Architect (.NET & Azure)", company: "HCLTech", location: "Noida", url: "https://www.linkedin.com/jobs" },
+        { title: "Technical Lead (.NET Architect)", company: "Randstad India", location: "Visakhapatnam (Vizag)", url: "https://www.linkedin.com/jobs" },
+        { title: "Backend Engineering Lead", company: "Tech Mahindra", location: "Visakhapatnam (Vizag)", url: "https://www.linkedin.com/jobs" }
     ];
 
     // Populate ticker with list items
@@ -216,35 +222,104 @@ document.addEventListener('DOMContentLoaded', () => {
         const items = Array.from(tickerList.children);
         if (items.length <= 2) return; // Don't scroll if too few items
 
+        // Remove any previously cloned items to prevent duplicating clones on re-renders
+        const existingClones = tickerList.querySelectorAll('.ticker-clone');
+        existingClones.forEach(clone => clone.remove());
+
         items.forEach(item => {
             const clone = item.cloneNode(true);
+            clone.classList.add('ticker-clone');
             tickerList.appendChild(clone);
         });
 
-        const listHeight = tickerList.scrollHeight / 2; // original height of elements
+        // Defer height calculation to allow DOM layouts to stabilize
+        setTimeout(() => {
+            let listHeight = 0;
 
-        const scrollStep = () => {
-            if (ticker.classList.contains('collapsed')) return; // Pause scroll if collapsed
+            const scrollStep = () => {
+                if (ticker.classList.contains('collapsed')) return; // Pause scroll if collapsed
 
-            currentY -= 0.5; // Scroll up 0.5px
-            
-            // Loop back once we scroll past original items
-            if (Math.abs(currentY) >= listHeight) {
-                currentY = 0;
-            }
-            tickerList.style.transform = `translateY(${currentY}px)`;
-        };
+                if (listHeight <= 0) {
+                    listHeight = tickerList.scrollHeight / 2;
+                    if (listHeight <= 0) return; // Still hidden
+                }
 
-        // Run smooth animation scroll
-        scrollInterval = setInterval(scrollStep, 30);
+                currentY -= 0.5; // Scroll up 0.5px
+                
+                // Loop back once we scroll past original items
+                if (Math.abs(currentY) >= listHeight) {
+                    currentY = 0;
+                }
+                tickerList.style.transform = `translateY(${currentY}px)`;
+            };
 
-        // Pause scroll on hover
-        container.addEventListener('mouseenter', () => {
-            clearInterval(scrollInterval);
-        });
-        container.addEventListener('mouseleave', () => {
+            // Run smooth animation scroll
             scrollInterval = setInterval(scrollStep, 30);
-        });
+
+            // Pause scroll on hover and handle manual wheel scrolling
+            container.addEventListener('mouseenter', () => {
+                clearInterval(scrollInterval);
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                clearInterval(scrollInterval);
+                scrollInterval = setInterval(scrollStep, 30);
+            });
+
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault(); // Stop page scroll
+                clearInterval(scrollInterval);
+                
+                if (listHeight <= 0) {
+                    listHeight = tickerList.scrollHeight / 2;
+                }
+                if (listHeight <= 0) return;
+
+                currentY -= e.deltaY * 0.4; // Scroll scaling factor
+                
+                // Boundaries check
+                if (currentY > 0) {
+                    currentY = -listHeight;
+                } else if (Math.abs(currentY) >= listHeight) {
+                    currentY = 0;
+                }
+                tickerList.style.transform = `translateY(${currentY}px)`;
+            }, { passive: false });
+
+            // Touch Swipe Scroll Support for Mobile Devices
+            let touchStartY = 0;
+            container.addEventListener('touchstart', (e) => {
+                clearInterval(scrollInterval);
+                touchStartY = e.touches[0].clientY;
+            }, { passive: true });
+
+            container.addEventListener('touchmove', (e) => {
+                clearInterval(scrollInterval);
+                const touchY = e.touches[0].clientY;
+                const deltaY = touchStartY - touchY;
+                touchStartY = touchY;
+
+                currentY -= deltaY;
+                
+                if (listHeight <= 0) {
+                    listHeight = tickerList.scrollHeight / 2;
+                }
+                if (listHeight <= 0) return;
+
+                // Boundaries check
+                if (currentY > 0) {
+                    currentY = -listHeight;
+                } else if (Math.abs(currentY) >= listHeight) {
+                    currentY = 0;
+                }
+                tickerList.style.transform = `translateY(${currentY}px)`;
+            }, { passive: true });
+
+            container.addEventListener('touchend', () => {
+                clearInterval(scrollInterval);
+                scrollInterval = setInterval(scrollStep, 30);
+            });
+        }, 100);
     };
 
     // Load dynamic opportunities

@@ -26,7 +26,14 @@ The application is a modern, single-page, responsive portfolio website built wit
 *   **Logo:** `KURMA RAO.`
 *   **Links:** About, Expertise, Experience, Education & Certs, Contact.
 *   **CTA:** "Let's Connect" button directing to the contact section.
+*   **Theme Toggle:** Sun/moon icon button for switching between dark mode and light mode (with `localStorage` persistence).
 *   **Features:** Header background changes to a dark semi-transparent glassmorphism style when scrolling down. Supports mobile hamburger menu with full-screen overlay menu list.
+
+### A.1 Role Switcher Sub-Bar
+*   **Position:** Sticky bar directly below the main navigation header.
+*   **Label:** "VIEW PROFILE FOCUS:"
+*   **Buttons:** All | Manager Mode | Architect Mode | Developer Mode.
+*   **Function:** Filters and highlights relevant sections of the portfolio based on career focus area.
 
 ### B. Hero Section
 *   **Headline:** "Architecting Enterprise Systems & AI Integrations"
@@ -102,3 +109,70 @@ When you are ready to update the site:
 1.  **Delineate Ernst & Young Projects:** Update the experience section to group EY's timeline item into clear project sub-headings (**DSA** and **DCQO**) with their respective environments and descriptions.
 2.  **Add Missing Certifications:** Append Naresh I Technologies certifications (MCAD, C Programming) into the `Credentials` list in `index.html`.
 3.  **Sync Skills Tags:** Standardize and expand the tags under each job in `index.html` to reflect the comprehensive list from the docx resume (e.g. adding tools like Tableau, QuickSense, Crystal Reports, BitBucket, and Oracle).
+
+---
+
+## 5. Recent Feature Implementations
+
+The following features have been added to the portfolio during this development cycle:
+
+### A. Dark/Light Theme Switcher
+*   **Toggle Button:** A sun/moon icon button in the top navigation bar (`.header-controls`) toggles between dark mode (default) and light mode.
+*   **Persistence:** User preference is saved to `localStorage` and restored on page reload (with `try/catch` safety for `file://` environments).
+*   **Styling:** Light mode applies a comprehensive set of CSS overrides (`body.light-mode`) covering backgrounds, text colors, cards, borders, and glassmorphism effects.
+
+### B. Professional Role Focus Modes (Sub-Header Bar)
+*   **Location:** Dedicated sticky sub-header bar (`.sub-header-switcher`) positioned below the main navigation menu.
+*   **Modes:** Four buttons — **All**, **Manager Mode**, **Architect Mode**, **Developer Mode**.
+*   **Functionality:** Clicking a mode applies `role-mode-active` and `role-{name}` classes to `<body>`, triggering CSS rules that highlight matching `[data-role]` elements and fade non-matching ones.
+*   **Tagged Elements:** Hero stats, About paragraphs, Expertise cards, and Experience timeline items carry `data-role="manager"`, `data-role="architect"`, and/or `data-role="developer"` attributes.
+
+### C. Live Opportunities Ticker Widget
+*   **Location:** Fixed bottom-left corner of the page.
+*   **States:** Collapsed (green briefcase icon) and expanded (scrolling job list panel).
+*   **Data Source:** Loads from `opportunities.json` via `fetch()`. Falls back to a hardcoded array if fetch fails (e.g. CORS on `file://`).
+*   **Auto-Scroll:** Infinite vertical loop animation scrolling jobs upward at 0.5px per 30ms tick.
+*   **Manual Scroll:** Mouse wheel scrolling inside the widget (pauses auto-scroll on hover). Touch swipe support for mobile devices.
+*   **Current Listings:** 13 .NET Architect & Engineering Manager positions across **Bengaluru**, **Hyderabad**, **Pune**, **Gurugram**, **Noida**, and **Visakhapatnam (Vizag)**.
+
+### D. GitHub Actions Daily Job Updater
+*   **Workflow File:** `.github/workflows/update_opportunities.yml`
+*   **Schedule:** Runs daily at midnight UTC via GitHub Actions cron (`0 0 * * *`).
+*   **Manual Trigger:** Also supports `workflow_dispatch` for on-demand runs from the GitHub Actions tab.
+*   **Process:** Checks out the repo → runs `update_opportunities.py` → commits and pushes updated `opportunities.json` back to the repo → GitHub Pages auto-redeploys.
+
+### E. Photo Adjustments
+*   **Hero Portrait (`KURMA RAO.jpg`):**
+    *   Container: 330×400px with 24px border-radius, accent backglow, and elegant box shadow.
+    *   `object-position: center top` ensures headshot is properly framed (face visible, not clipped).
+    *   Mobile responsive: scales to 260×320px on screens ≤768px.
+    *   Light mode gets softer shadow styling.
+*   **About Section Photo (`IMG_20140315_242135725.jpg`):**
+    *   Container: 480px height with 20px border-radius and subtle grayscale filter (10%).
+    *   `object-position: center top` ensures the subject's head is in frame.
+    *   Hover reveals full color with gentle zoom effect.
+    *   Mobile responsive: scales to 360px height on screens ≤768px.
+    *   Light mode gets softer shadow styling.
+
+---
+
+## 6. File Structure
+
+```
+About Me/
+├── .github/
+│   └── workflows/
+│       └── update_opportunities.yml   # Daily GitHub Actions job updater
+├── index.html                         # Main portfolio page
+├── index.css                          # All styles (dark/light themes, responsive)
+├── index.js                           # Interactions (theme, roles, ticker, forms)
+├── opportunities.json                 # Dynamic job listings data (auto-updated daily)
+├── update_opportunities.py            # Python crawler script for job updates
+├── KURMA RAO.jpg                      # Hero section portrait photo
+├── IMG_20140315_242135725.jpg          # About section photo
+├── IMG_20140315_120329849.jpg          # Additional photo (team outing)
+├── 5 001.jpg                          # Additional photo (studio portrait)
+├── Resume KurmaRao.pdf                # Downloadable resume
+├── Kurma Rao Palli_New_bulletPoints.docx  # Source resume document
+└── README.md                          # This file
+```
