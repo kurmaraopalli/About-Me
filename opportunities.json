@@ -1,5 +1,11 @@
 [
   {
+    "title": "Marketing Manager",
+    "company": "batch2 engineering GmbH",
+    "location": "Eggenfelden",
+    "url": "https://www.arbeitnow.com/jobs/companies/batch2-engineering-gmbh/marketing-manager-eggenfelden-49839"
+  },
+  {
     "title": "Operations & Client Manager (m/w/d) - mit Perspektive auf Teamleitung",
     "company": "IMMO PICTURES",
     "location": "Cologne",
@@ -52,11 +58,5 @@
     "company": "TEQYARD",
     "location": "Braunschweig",
     "url": "https://www.arbeitnow.com/jobs/companies/teqyard/senior-software-developer-fullstack-braunschweig-466475"
-  },
-  {
-    "title": "Testmanager Software und Systemtests (m/w/d)",
-    "company": "MY Humancapital GmbH",
-    "location": "Munich",
-    "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/testmanager-software-und-systemtests-munich-232119"
   }
 ]
