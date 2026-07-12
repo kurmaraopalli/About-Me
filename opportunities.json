@@ -1,5 +1,23 @@
 [
   {
+    "title": "Local Marketing Manager",
+    "company": "Test",
+    "location": "Karlsruhe",
+    "url": "https://www.arbeitnow.com/jobs/companies/test/local-marketing-manager-karlsruhe-260900"
+  },
+  {
+    "title": "(Junior) Customer Success Manager:in (m/w/d)",
+    "company": "Get Mika",
+    "location": "Berlin",
+    "url": "https://www.arbeitnow.com/jobs/companies/get-mika/junior-customer-success-managerin-berlin-307396"
+  },
+  {
+    "title": "Marketplace Manager (m/w/d) | OTTO, Kaufland & Co. | Freelancer | 100 % Remote",
+    "company": "Doggylove",
+    "location": "Heilbronn",
+    "url": "https://www.arbeitnow.com/jobs/companies/doggylove/marketplace-manager-otto-kaufland-co-freelancer-100-remote-heilbronn-13456"
+  },
+  {
     "title": "People Operations Manager (m/w/d)",
     "company": "Alphapet Ventures GmbH",
     "location": "Munich",
@@ -40,23 +58,5 @@
     "company": "MY Humancapital GmbH",
     "location": "Munich",
     "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/senior-sap-btp-developer-munich-308528"
-  },
-  {
-    "title": "Projektmanager Vertragsmanagement (m/w/d)",
-    "company": "MY Humancapital GmbH",
-    "location": "Munich",
-    "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/projektmanager-vertragsmanagement-munich-173390"
-  },
-  {
-    "title": "Technischer Property Manager (m/w/d)",
-    "company": "MY Humancapital GmbH",
-    "location": "Munich",
-    "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/technischer-property-manager-munich-432363"
-  },
-  {
-    "title": "Konfigurationsmanager / Produktkoordinator (m/w/d)",
-    "company": "MY Humancapital GmbH",
-    "location": "Munich",
-    "url": "https://www.arbeitnow.com/jobs/companies/my-humancapital-gmbh/konfigurationsmanager-produktkoordinator-munich-470771"
   }
 ]
